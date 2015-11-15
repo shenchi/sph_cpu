@@ -3,7 +3,9 @@
 
 namespace SPH{
 	
+#ifndef M_PI
 	const float M_PI = 3.1415926f;
+#endif
 
 	ParticleSystem *CreateParticleSystem(int max_particles, float smooth_radius, float k, float miu, float rhou0){
 		ParticleSystem *p = new ParticleSystem;

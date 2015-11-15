@@ -46,7 +46,7 @@ namespace SPH{
 				float h_r = p->smooth_radius - dist;
 				float vivj = p->volume[i] * p->volume[j];
 				
-				fp = fp + r * (1 / dist) * vivj * 0.5f * (p->pressure[i] + p->pressure[j]) * pow(h_r, 3);
+				fp = fp + r * (1 / dist) * vivj * 0.5f * (p->pressure[i] + p->pressure[j]) * (float)pow(h_r, 3);
 				fv = fv + (p->vel[j] - p->vel[i]) * vivj * p->miu  * h_r;
 
 			}
