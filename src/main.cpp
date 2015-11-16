@@ -117,10 +117,6 @@ GLuint compile_shader(const char * vs_src, const char * ps_src){
 	return program;
 }
 
-// void idle_func(){
-// 	glutPostRedisplay();
-// }
-
 void render_particles(){
 	glUseProgram(shaderProgram);
 
@@ -178,14 +174,9 @@ void display_func(){
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	// glLoadIdentity();
-
-	// gluLookAt(0.3, 0.2, 0.3, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-
 	// box
 	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 	line_box(orgpos, endpos);
-	//glColor3f(1.0f, 1.0f, 1.0f);
 
 	// particles
 	render_particles();
@@ -246,18 +237,6 @@ void error_func(int error, const char* desc) {
 }
 
 void init_gl(int argc, char **argv){
-	// glutInit(&argc, argv);
-	// glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
-	// glutInitWindowSize(800, 600);
-	// glutCreateWindow("adaptively sampling SPH");
-	// glutShowWindow();
-
-	// glewInit();
-
-	// glutIdleFunc(idle_func);
-	// glutDisplayFunc(display_func);
-	// glutReshapeFunc(reshape_func);
-	// glutKeyboardFunc(keyboard_func);
 
     glEnable(GL_POINT_SPRITE_ARB);
     glTexEnvi(GL_POINT_SPRITE_ARB, GL_COORD_REPLACE_ARB, GL_TRUE);
@@ -327,7 +306,6 @@ int main(int argc, char **argv){
 	init_particles(psys);
 	init_gl(argc, argv);
 
-	// glutMainLoop();
 	while (!glfwWindowShouldClose(window)) {
 		
 		display_func();
