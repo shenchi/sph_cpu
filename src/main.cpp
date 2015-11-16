@@ -17,10 +17,10 @@ Grid * grid;
 extern const char * vertexShader;
 extern const char * spherePixelShader;
 GLuint shaderProgram;
-GLuint posVBO, colorVBO;
+GLuint posVBO;//, colorVBO;
 
 //======= params ========
-const int side = 15;
+const int side = 20;
 const int n = side * side * side;
 const float time_step = 0.002f;
 const float rhou0 = 1000.0f;
@@ -130,15 +130,15 @@ void render_particles(){
 	glVertexPointer(3, GL_FLOAT, 0, 0);
 	glEnableClientState(GL_VERTEX_ARRAY);
 	
-	glBindBuffer(GL_ARRAY_BUFFER, colorVBO);
-	glColorPointer(3, GL_FLOAT, 0, 0);
-	glEnableClientState(GL_COLOR_ARRAY);
+//	glBindBuffer(GL_ARRAY_BUFFER, colorVBO);
+//	glColorPointer(3, GL_FLOAT, 0, 0);
+//	glEnableClientState(GL_COLOR_ARRAY);
 
 	glDrawArrays(GL_POINTS, 0, psys->n_particles);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
+//	glDisableClientState(GL_COLOR_ARRAY);
 
 	glUseProgram(0);
 }
@@ -249,18 +249,18 @@ void init_gl(int argc, char **argv){
 	shaderProgram = compile_shader(vertexShader, spherePixelShader);
 
 	glGenBuffers(1, &posVBO);
-	glGenBuffers(1, &colorVBO);
+//	glGenBuffers(1, &colorVBO);
 
-	float *color = new float[psys->n_particles * 3];
-	for(int i = 0; i < psys->n_particles; i++){
-		color[ i * 3		]	= 0.0f;
-		color[ i * 3 + 1	]	= 0.0f;
-		color[ i * 3 + 2	]	= 1.0f;
-	}
+//	float *color = new float[psys->n_particles * 3];
+//	for(int i = 0; i < psys->n_particles; i++){
+//		color[ i * 3		]	= 0.0f;
+//		color[ i * 3 + 1	]	= 0.0f;
+//		color[ i * 3 + 2	]	= 1.0f;
+//	}
 
-	glBindBuffer(GL_ARRAY_BUFFER, colorVBO);
-	glBufferData(GL_ARRAY_BUFFER, 3 * sizeof(float) * psys->n_particles, color, GL_DYNAMIC_DRAW);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
+//	glBindBuffer(GL_ARRAY_BUFFER, colorVBO);
+//	glBufferData(GL_ARRAY_BUFFER, 3 * sizeof(float) * psys->n_particles, color, GL_DYNAMIC_DRAW);
+//	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 int main(int argc, char **argv){

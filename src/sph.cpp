@@ -13,7 +13,7 @@ namespace SPH{
 				int j = g->nb[ni];
 
 				float3 r = p->pos[j] - p->pos[i];
-				float r_sqr = r * r;
+				float r_sqr = dot(r, r);
 
 				p->density[i] += pow(p->smooth_radius_sqr - r_sqr, 3);
 			}
@@ -63,12 +63,12 @@ namespace SPH{
 
 	const float dumping = 0.6f;
 	inline void collision_plane(float3 normal, float d, float3 &pos, float3 &vel){
-		float dist = normal * pos + d;
+		float dist = dot(normal, pos) + d;
 
 		if( dist > 0 ) return;
 
 		pos = pos - 2.0f * dist * normal;
-		vel = vel - dumping * 2.0f * vel * normal * normal;
+		vel = vel - dumping * 2.0f * dot(vel, normal) * normal;
 	}
 
 	const float3 up = make_float3(0, 1, 0);

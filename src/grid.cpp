@@ -40,7 +40,7 @@ namespace SPH{
 	}
 
 	inline int gridHash(Grid *g, float3 &pos){
-		int3 p = make_int3((pos - g->origin) * ( 1.0f / g->h) );
+		int3 p = make_int3((pos - g->origin) * ( 1.0f / g->h));
 		if( p.x < 0 || p.x >= g->i_size.x ) return 0;
 		if( p.y < 0 || p.y >= g->i_size.y ) return 0;
 		if( p.z < 0 || p.z >= g->i_size.z ) return 0;
@@ -53,7 +53,7 @@ namespace SPH{
 
 	const int3 int3_zero = make_int3(0, 0, 0);
 	inline int3 gridPos(const float3 &pos, Grid *g){
-		int3 p = make_int3((pos - g->origin) * ( 1.0f / g->h) );
+		int3 p = make_int3((pos - g->origin) * ( 1.0f / g->h));
 		if( p.x < 0 || p.x >= g->i_size.x ) return int3_zero;
 		if( p.y < 0 || p.y >= g->i_size.y ) return int3_zero;
 		if( p.z < 0 || p.z >= g->i_size.z ) return int3_zero;
